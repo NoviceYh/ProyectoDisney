@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -41,6 +42,7 @@ public class Pelicula {
     @Column(name = "Calificacion", nullable = false)
     private Integer calificacion;
     
+    @OneToMany
     @Column(name = "Personajes", nullable = false)
     private List<Personaje> personajes;
     

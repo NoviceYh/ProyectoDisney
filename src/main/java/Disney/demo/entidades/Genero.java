@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -31,6 +32,7 @@ public class Genero {
     @Column(name = "Imagen", nullable = false)
     private byte[] imagen;
     
+    @OneToMany
     @Column(name = "Peliculas", nullable = false)
     private List<Pelicula> peliculas;
 
