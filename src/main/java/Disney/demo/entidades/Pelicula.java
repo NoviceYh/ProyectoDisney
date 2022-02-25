@@ -43,7 +43,7 @@ public class Pelicula {
     private Integer calificacion;
     
     @OneToMany
-    @Column(name = "Personajes", nullable = false)
+    @Column(name = "Personajes")
     private List<Personaje> personajes;
     
     

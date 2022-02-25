@@ -42,7 +42,7 @@ public class Personaje {
     private String historia;
     
     @OneToMany
-    @Column(name = "Peliculas", nullable = false)
+    @Column(name = "Peliculas")
     private List<Pelicula> peliculas;
     
     //CONTRUCTORES

@@ -33,7 +33,7 @@ public class Genero {
     private byte[] imagen;
     
     @OneToMany
-    @Column(name = "Peliculas", nullable = false)
+    @Column(name = "Peliculas")
     private List<Pelicula> peliculas;
 
     //CONSTRUCTORES
