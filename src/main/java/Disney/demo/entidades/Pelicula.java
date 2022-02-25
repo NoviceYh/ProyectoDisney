@@ -3,26 +3,49 @@ package Disney.demo.entidades;
 
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Basic;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
+@Table(name = "PELICULAS")
 public class Pelicula {
     
+    //ATRIBUTOS
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @Column(name = "ID", nullable = false)
     private String id;
     
+    @Basic(fetch=FetchType.LAZY)
+    @Lob
+    @Column(name = "Imagen", nullable = false)
     private byte[] imagen;
+    
+    @Column(name = "Titulo", nullable = false)
     private String titulo;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "Fecha_de_creacion", nullable = false)
     private Date fechaCreacion;
+    
+    @Column(name = "Calificacion", nullable = false)
     private Integer calificacion;
     
+    @Column(name = "Personajes", nullable = false)
     private List<Personaje> personajes;
-
+    
+    
+    //CONSTRUCTORES
     public Pelicula() {
     }
 
@@ -34,7 +57,8 @@ public class Pelicula {
         this.calificacion = calificacion;
         this.personajes = personajes;
     }
-
+    
+    //GETTERS AND SETTERS
     public String getId() {
         return id;
     }
