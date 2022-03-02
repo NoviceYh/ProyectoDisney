@@ -1,7 +1,10 @@
 package Disney.demo.entidades;
 
+import Disney.demo.enums.Rol;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -35,6 +38,9 @@ public class Usuario {
 
     @Column(name = "DNI", nullable = false)
     private String dni;
+
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 
     //CONSTRUCTORES
     public Usuario() {
@@ -105,6 +111,14 @@ public class Usuario {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
     }
 
 }
