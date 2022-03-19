@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Disney</title>
+</head>
+<body>
+    
+    <h1 style="text-align: center;" >INGRESO DE PELICULA/SERIE NUEVA</h1>
+    <div th:if="${error}">
+        <span th:text="${error}" style="color: red;"></span>
+    </div>
+    <form th:action="@{/movies/save}" method="POST" enctype="multipart/form-data" th:object="${pelicula}">
+        <input hidden th:field="*{id}" th:value="${pelicula.id}">
+
+        <label for="titulo">Titulo</label>
+        <input type="text" name="titulo" th:field="*{titulo}" placeholder="Ingrese el titulo..">
+        
+        <label for="fechaCreacion">Fecha de creacion</label>
+        <input type="date" name="fechaCreacion" th:field="*{fechaCreacion}">
+
+        <label for="calificacion">Calificación</label>
+        <select name="calificacion" th:field="*{calificacion}">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+        </select>
+
+        <label for="personajes">Personajes Asociados</label>
+        <select th:field="*{personajes}" name="" id="" required multiple="multiple">
+            <th:block th:each="p : ${personajes}">
+                <option th:text="${p.nombre}" th:value="${p.id}"></option>
+            </th:block>
+            
+        </select>
+
+        <label for="foto">Imagen</label>
+        <input type="file" name="foto">
+
+        <input type="submit" value="Guardar">
+
+    </form>
+</body>
+</html>

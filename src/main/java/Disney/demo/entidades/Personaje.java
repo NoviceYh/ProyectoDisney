@@ -1,14 +1,20 @@
 
 package Disney.demo.entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,23 +32,22 @@ public class Personaje {
     
     @Basic(fetch=FetchType.LAZY) //Para que no incluya el campo en una busqueda general
     @Lob
-    @Column(name = "Imagen", nullable = false)
+    @Column(name = "Imagen")
     private byte[] imagen;
     
-    @Column(name = "Nombre", nullable = false)
+    @Column(name = "Nombre")
     private String nombre;
     
-    @Column(name = "Edad", nullable = false)
+    @Column(name = "Edad")
     private String edad;
     
-    @Column(name = "Peso", nullable = false)
+    @Column(name = "Peso")
     private String peso;
     
-    @Column(name = "Historia", nullable = false)
+    @Column(name = "Historia")
     private String historia;
     
-    @OneToMany
-    @Column(name = "Peliculas")
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.MERGE,CascadeType.PERSIST},mappedBy = "personajes")
     private List<Pelicula> peliculas;
     
     //CONTRUCTORES
@@ -56,7 +61,7 @@ public class Personaje {
         this.edad = edad;
         this.peso = peso;
         this.historia = historia;
-        this.peliculas = peliculas;
+        
     }
     
     //GETTERS AND SETTERS
@@ -108,16 +113,12 @@ public class Personaje {
         this.historia = historia;
     }
 
-    public List<Pelicula> getPelicula() {
+    public List<Pelicula> getPeliculas() {
         return peliculas;
     }
 
     public void setPeliculas(List<Pelicula> peliculas) {
         this.peliculas = peliculas;
     }
-
-    
-    
-    
-    
+ 
 }

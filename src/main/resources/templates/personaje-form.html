@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Disney</title>
+</head>
+<body>
+    
+    <h1 style="text-align: center;" >INGRESO DE PERSONAJE NUEVO</h1>
+    <div th:if="${error}">
+        <span th:text="${error}" style="color: red;"></span>
+    </div>
+    <form th:action="@{/characters/save}" method="POST" enctype="multipart/form-data" th:object="${personaje}">
+        <input hidden th:field="*{id}">
+
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" th:field="*{nombre}" placeholder="Ingrese el nombre..">
+        
+        <label for="apellido">Edad</label>
+        <input type="number" name="edad" th:field="*{edad}" placeholder="Ingrese la edad..">
+
+        <label for="peso">Peso en Kg</label>
+        <input type="number" name="peso" th:field="*{peso}" placeholder="Ingrese el peso..">
+
+        <label for="historia">Historia</label>
+        <textarea name="historia" id="" cols="30" rows="10" th:field="*{historia}" 
+        placeholder="Ingrese la historia.." style="resize: none;"></textarea>
+
+        <label for="foto">Imagen</label>
+        <input type="file" name="foto">
+        
+
+        <input type="submit" value="Guardar">
+
+    </form>
+</body>
+</html>

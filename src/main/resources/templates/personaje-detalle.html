@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto Disney</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="text" name="q" id="" />
+      <input type="submit" value="Buscar" />
+    </form>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Peso</th>
+          <th>Historia</th>
+          <th>Peliculas/Series</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <img
+              th:if="${p.imagen != null}"
+              th:src="${'/characters/imagen/' + p.id}"
+              alt="Foto"
+              style="height: 100px;"
+            />
+          </td>
+          <td th:text="${p.nombre}"></td>
+          <td th:text="${p.edad}"></td>
+          <td th:text="${p.peso}"></td>
+          <td th:text="${p.historia}"></td>
+          <td>
+            <ul th:each="peli : ${peliculas}">
+              <li th:text ="${peli.titulo}"></li>
+            </ul>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><a th:href="@{/characters}">Lista</a></li>
+      <li><a th:href="@{/}">Inicio</a></li>
+    </ul>
+  </body>
+</html>

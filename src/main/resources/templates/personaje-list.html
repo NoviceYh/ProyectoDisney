@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto Disney</title>
+  </head>
+  <body>
+    <form th:action="@{/characters}" method="get">
+      <input type="text" name="name" id="" placeholder="Buscar por nombre.."/>
+      <input type="submit" value="Buscar" />
+    </form>
+    <br>
+    <form th:action="@{/characters}" method="get">
+      <input type="number" name="age" id="" placeholder="Buscar por edad.."/>
+      <input type="submit" value="Buscar" />
+    </form>
+    <br>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Imagen</th>
+          <th>Nombre</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="p : ${personajes}">
+          <td>
+            <img
+              th:if="${p.imagen != null}"
+              th:src="${'/characters/imagen/' + p.id}"
+              alt="Foto"
+              style="height: 100px;"
+            />
+          </td>
+          <td th:text="${p.nombre}"></td>
+          <td>
+            <button>
+              <a th:href="@{'/characters/edit'+'/'+${p.id}}">Editar</a>
+            </button>
+            <button>
+              <a th:href="@{'/characters/delete'+'/'+${p.id}}">Eliminar</a>
+            </button>
+            <button>
+              <a th:href="@{'/characters/details'+'/'+${p.id}}">Detalles</a>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li><a th:href="@{/}">Inicio</a></li>
+    </ul>
+    <h4 th:if="${personajes.isEmpty}">No se encontraron resultados</h4>
+  </body>
+</html>
